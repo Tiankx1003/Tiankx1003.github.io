@@ -30,21 +30,7 @@
   </url>
   
   <url>
-    <loc>http://tiankx1003.github.io/categories/index.html</loc>
-    
-    <lastmod>2020-06-25T09:23:15.793Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://tiankx1003.github.io/2020/06/25/wsl%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2020-06-25T09:23:15.793Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://tiankx1003.github.io/2020/06/25/zshVundle/</loc>
     
     <lastmod>2020-06-25T09:23:15.793Z</lastmod>
     
@@ -58,7 +44,14 @@
   </url>
   
   <url>
-    <loc>http://tiankx1003.github.io/2020/06/25/SparkOptimize/</loc>
+    <loc>http://tiankx1003.github.io/tags/index.html</loc>
+    
+    <lastmod>2020-06-25T09:23:15.793Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://tiankx1003.github.io/categories/index.html</loc>
     
     <lastmod>2020-06-25T09:23:15.793Z</lastmod>
     
@@ -72,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://tiankx1003.github.io/tags/index.html</loc>
+    <loc>http://tiankx1003.github.io/2020/06/25/SparkOptimize/</loc>
     
     <lastmod>2020-06-25T09:23:15.793Z</lastmod>
     
@@ -80,6 +73,13 @@
   
   <url>
     <loc>http://tiankx1003.github.io/2020/06/25/MySQL@Ubuntu/</loc>
+    
+    <lastmod>2020-06-25T09:23:15.793Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://tiankx1003.github.io/2020/06/25/zshVundle/</loc>
     
     <lastmod>2020-06-25T09:23:15.793Z</lastmod>
     
@@ -128,13 +128,6 @@
   </url>
   
   <url>
-    <loc>http://tiankx1003.github.io/2020/06/25/Flink--ProcessFunctionAPI/</loc>
-    
-    <lastmod>2020-06-25T09:23:15.785Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://tiankx1003.github.io/2020/06/25/FlinkSlot%E8%AF%A6%E8%A7%A3%E4%B8%8EJobExecutionGrap%E4%BC%98%E5%8C%96/</loc>
     
     <lastmod>2020-06-25T09:23:15.785Z</lastmod>
@@ -143,6 +136,13 @@
   
   <url>
     <loc>http://tiankx1003.github.io/2020/06/25/Flink--%E7%8A%B6%E6%80%81%E4%B8%80%E8%87%B4%E6%80%A7/</loc>
+    
+    <lastmod>2020-06-25T09:23:15.785Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://tiankx1003.github.io/2020/06/25/Flink--ProcessFunctionAPI/</loc>
     
     <lastmod>2020-06-25T09:23:15.785Z</lastmod>
     
