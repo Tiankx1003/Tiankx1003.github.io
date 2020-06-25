@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Interview--SQL"><meta name="keywords" content="BigData,Interview"><meta name="author" content="Tiankx"><meta name="copyright" content="Tiankx"><title>Interview--SQL | Tiankx</title><link rel="shortcut icon" href="/fire.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Tiankx" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/header.jpg"></div><div class="author-info__name text-center">Tiankx</div><div class="author-info__description text-center">Tiankx的个人博客</div><div class="follow-button"><a href="https://github.com/Tiankx1003" target="_blank" rel="noopener">Follow Me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">17</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">7</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Links</div><a class="author-info-links__name text-center" href="https://molunerfinn.com" target="_blank" rel="noopener">Molunerfinn</a><a class="author-info-links__name text-center" href="https://kinomin.github.io" target="_blank" rel="noopener">KinoMin</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc" target="_blank" rel="noopener">HexoMelody</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/bg.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Tiankx</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">Interview--SQL</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-25</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><ol>
+<li>表结构：uid,subject_id,score<br> 求：找出所有科目成绩都大于某一学科平均成绩的用户</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> uid, subject_id, avg_sub, score</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">	<span class="keyword">SELECT</span> uid, t1.subject_id, score, avg_sub</span><br><span class="line">	<span class="keyword">FROM</span> score_tab t1</span><br><span class="line">		<span class="keyword">JOIN</span> (</span><br><span class="line">			<span class="keyword">SELECT</span> subject_id, <span class="keyword">AVG</span>(score) <span class="keyword">AS</span> avg_sub</span><br><span class="line">			<span class="keyword">FROM</span> score_tab</span><br><span class="line">			<span class="keyword">GROUP</span> <span class="keyword">BY</span> subject_id</span><br><span class="line">		) t2</span><br><span class="line">		<span class="keyword">ON</span> t1.subject_id = t2.subject_id</span><br><span class="line">) t3</span><br><span class="line"><span class="keyword">WHERE</span> score &gt; avg_sub;</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>有如下的用户访问数据</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>userId</th>
+<th>visitDate</th>
+<th>visitCount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u01</td>
+<td>2017/1/21</td>
+<td>5</td>
+</tr>
+<tr>
+<td>u02</td>
+<td>2017/1/23</td>
+<td>6</td>
+</tr>
+<tr>
+<td>u03</td>
+<td>2017/1/22</td>
+<td>8</td>
+</tr>
+<tr>
+<td>u04</td>
+<td>2017/1/20</td>
+<td>3</td>
+</tr>
+<tr>
+<td>u01</td>
+<td>2017/1/23</td>
+<td>6</td>
+</tr>
+<tr>
+<td>u01</td>
+<td>2017/2/21</td>
+<td>8</td>
+</tr>
+<tr>
+<td>U02</td>
+<td>2017/1/23</td>
+<td>6</td>
+</tr>
+<tr>
+<td>U01</td>
+<td>2017/2/22</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<p>要求使用sql统计出每个用户的累积访问次数，结果如下</p>
+<table>
+<thead>
+<tr>
+<th>用户id</th>
+<th>月份</th>
+<th>小计</th>
+<th>累积</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u01</td>
+<td>2017-01</td>
+<td>11</td>
+<td>11</td>
+</tr>
+<tr>
+<td>u01</td>
+<td>2017-02</td>
+<td>12</td>
+<td>23</td>
+</tr>
+<tr>
+<td>u02</td>
+<td>2017-01</td>
+<td>12</td>
+<td>12</td>
+</tr>
+<tr>
+<td>u03</td>
+<td>2017-01</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>u04</td>
+<td>2017-01</td>
+<td>3</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 用户名大小写转换，日期格式转换，开窗计算小计和累积</span></span><br><span class="line"><span class="keyword">SELECT</span> t2.id <span class="keyword">AS</span> <span class="string">`用户id`</span>, t2.mn <span class="keyword">AS</span> <span class="string">`月份`</span>, sum_vc <span class="keyword">AS</span> <span class="string">`小计`</span>, <span class="keyword">SUM</span>(sum_vc) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> t2.id <span class="keyword">ORDER</span> <span class="keyword">BY</span> t2.mn) <span class="keyword">AS</span> <span class="string">`累积`</span></span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">	<span class="keyword">SELECT</span> <span class="keyword">id</span>, mn, <span class="keyword">SUM</span>(vc) <span class="keyword">AS</span> sum_vc</span><br><span class="line">	<span class="keyword">FROM</span> (</span><br><span class="line">		<span class="keyword">SELECT</span> <span class="keyword">lower</span>(userid) <span class="keyword">AS</span> <span class="keyword">id</span>, from_unixtime(<span class="keyword">unix_timestamp</span>(visitdate, <span class="string">'yyyy/mm/dd'</span>), <span class="string">'yyyy-mm'</span>) <span class="keyword">AS</span> mn, visitcount <span class="keyword">AS</span> vc</span><br><span class="line">		<span class="keyword">FROM</span> user_table</span><br><span class="line">	) t1</span><br><span class="line">	<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">id</span>, mn</span><br><span class="line">) t2;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>有50W个京东店铺，每个顾客访客访问任何一个店铺的任何一个商品时都会产生一条访问日志，访问日志存储的表名为Visit，访客的用户id为user_id，被访问的店铺名称为shop，请统计：</p>
+<p>1）每个店铺的UV（访客数）</p>
+<p>2）每个店铺访问次数的访客信息。输出店铺名称、访客、访问次数</p>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>已知一个表STG.ORDER，有如下字段:Date，Order_id，User_id，amount。请给出sql进行统计:数据样例:2017-01-01,10029028,1000003251,33.57。</p>
+<p>1）给出 2017年每个月的订单数、用户数、总成交金额。</p>
+<p>2）给出年月的新客数指在月才有第一笔订单</p>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>有一个5000万的用户文件(user_id，name，age)，一个2亿记录的用户看电影的记录文件(user_id，url)，统计各年龄段观看电影的次数</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>6.有日志如下，请写出代码求得所有用户和活跃用户的总数及平均年龄。（活跃用户指连续两天都有访问记录的用户）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">日期 用户 年龄</span><br><span class="line">11,test_1,23</span><br><span class="line">11,test_2,19</span><br><span class="line">11,test_3,39</span><br><span class="line">11,test_1,23</span><br><span class="line">11,test_3,39</span><br><span class="line">11,test_1,23</span><br><span class="line">12,test_2,19</span><br><span class="line">13,test_1,23</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>请用sql写出所有用户中在今年10月份第一次购买商品的金额，表ordertable字段（购买用户：userid，金额：money，购买时间：paymenttime(格式：2017-10-01)，订单id：orderid）</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>有一个线上服务器访问日志格式如下（用sql答题）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">时间           			接口             		ip地址</span><br><span class="line">2016-11-09 11：22：05  	&#x2F;api&#x2F;user&#x2F;login        110.23.5.33</span><br><span class="line">2016-11-09 11：23：10 	&#x2F;api&#x2F;user&#x2F;detail       57.3.2.16</span><br><span class="line">.....</span><br><span class="line">2016-11-09 23：59：40  	&#x2F;api&#x2F;user&#x2F;login        200.6.5.166</span><br></pre></td></tr></table></figure>
+求11月9号下午14点（14-15点），访问api/user/login接口的top10的ip地址</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>有一个账号表如下，请写出SQL语句，查询各自区组的money排名前十的账号（分组取前10）</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> TABIE <span class="string">`account`</span> </span><br><span class="line">(</span><br><span class="line">    <span class="string">`dist_id`</span> <span class="built_in">int</span>（<span class="number">11</span>）</span><br><span class="line">    <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'区组id'</span>，</span><br><span class="line">    <span class="string">`account`</span> <span class="built_in">varchar</span>（<span class="number">100</span>）<span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'账号'</span> ,</span><br><span class="line">    <span class="string">`gold`</span> <span class="built_in">int</span>（<span class="number">11</span>）<span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'金币'</span> </span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> （<span class="string">`dist_id`</span>，<span class="string">`account_id`</span>），</span><br><span class="line">）<span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>-utf8</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Tiankx</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://tiankx1003.github.io/2020/06/25/Interview--SQL/">http://tiankx1003.github.io/2020/06/25/Interview--SQL/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://tiankx1003.github.io">Tiankx</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/BigData/">BigData</a><a class="post-meta__tags" href="/tags/Interview/">Interview</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="/img/aliPay.jpg"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="/img/WeChatPay.jpg"><div class="post-qr-code__desc">微信打赏</div></div></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/06/25/HexoBuild/"><i class="fa fa-chevron-left">  </i><span>Hexo搭建个人博客</span></a></div><div class="next-post pull-right"><a href="/2020/06/25/Interview--%E5%89%8D%E7%BD%AE%E6%8A%80%E6%9C%AF/"><span>Interview--前置技术</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(/img/bg.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2012 - 2020 By Tiankx</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://github.com/Tianxk1003" target="_blank" rel="noopener">blog</a>!</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script></body></html>
