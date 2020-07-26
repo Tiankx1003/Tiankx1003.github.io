@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="阿里大数据之路"><meta name="keywords" content="BigData"><meta name="author" content="Tiankx"><meta name="copyright" content="Tiankx"><title>阿里大数据之路 | Tiankx</title><link rel="shortcut icon" href="/fire.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Tiankx" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据同步"><span class="toc-text">数据同步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#同步方式的选择"><span class="toc-text">同步方式的选择</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题与解决方案"><span class="toc-text">问题与解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-分库分表的处理"><span class="toc-text">1.分库分表的处理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-高效同步和批量同步"><span class="toc-text">2.高效同步和批量同步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-增量和全量同步的合并"><span class="toc-text">3.增量和全量同步的合并</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-同步性能的优化"><span class="toc-text">4.同步性能的优化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-数据漂移问题的解决-p46"><span class="toc-text">5.数据漂移问题的解决 p46</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-去重指标"><span class="toc-text">6.去重指标</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-数据倾斜"><span class="toc-text">7.数据倾斜</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-事务处理"><span class="toc-text">8.事务处理</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/header.jpg"></div><div class="author-info__name text-center">Tiankx</div><div class="author-info__description text-center">Tiankx的个人博客</div><div class="follow-button"><a href="https://github.com/Tiankx1003" target="_blank" rel="noopener">Follow Me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">21</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">8</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Links</div><a class="author-info-links__name text-center" href="https://molunerfinn.com" target="_blank" rel="noopener">Molunerfinn</a><a class="author-info-links__name text-center" href="https://kinomin.github.io" target="_blank" rel="noopener">KinoMin</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc" target="_blank" rel="noopener">HexoMelody</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/bg.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Tiankx</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">阿里大数据之路</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-07-26</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h3><h4 id="同步方式的选择"><a href="#同步方式的选择" class="headerlink" title="同步方式的选择"></a>同步方式的选择</h4><p><strong>1.直连同步</strong><br>之间调用规范的接口API可以实现数据的直连同步，配置简单，易于实现，但是业务量大时容易拖垮性能</p>
+<p><strong>2.同步数据文件</strong><br>约定好文件编码、大小和格式能够直接同步数据文件，通过校验文件解决网络传输造成的丢包等问题，通过压缩解压缩和加解密提高文件传输的安全性</p>
+<p><strong>3.数据库日志解析同步</strong><br>主流数据库都能够使用日志文件(MySQL中的binlog、HBase的Hlog和Oracle的归档日志)进行系统恢复<br>日志文件信息丰富且数据格式稳定，可以通过解析日志文件获取发生变更的数据，从而满足增量数据同步的需求。<br>使用数据库日志解析的同步方式有<strong>实时</strong>和<strong>准实时</strong>的同步能力，延迟在<strong>毫秒</strong>级别，对业务系统性能影响较小。</p>
+<ul>
+<li>阿里使用<strong>DataX</strong>完成多样数据源的海量数据同步<br> DataX采用分布式全内存的方式进行批量同步，且无进程间通信<br> 通过解析MySQL的binlog日志来实时获得增量的数据更新<br> 通过消息订阅模式来实现数据的实时同步</li>
+</ul>
+<h3 id="问题与解决方案"><a href="#问题与解决方案" class="headerlink" title="问题与解决方案"></a>问题与解决方案</h3><h5 id="1-分库分表的处理"><a href="#1-分库分表的处理" class="headerlink" title="1.分库分表的处理"></a>1.分库分表的处理</h5><p>目前主流的数据库都支持<strong>分布式分库分表</strong>来实现<strong>高并发</strong>大数据量的处理，但是这也给数据同步带来了问题<br>通过建立中间状态的<strong>逻辑表</strong>来整合统一分库分表的访问</p>
+<!-- Taobao Distributed Data Layer -->
+
+<h5 id="2-高效同步和批量同步"><a href="#2-高效同步和批量同步" class="headerlink" title="2.高效同步和批量同步"></a>2.高效同步和批量同步</h5><p><strong>问题</strong></p>
+<ul>
+<li>传统方式同步海量数据会有很多重复性的操作，且工作量大</li>
+<li>数据源种类繁多，不同的数据源同步需要开发人员了解特殊配置</li>
+<li>其他业务的开发人员在大数据方面存在技术门槛</li>
+</ul>
+<p><strong>解决方案</strong></p>
+<ul>
+<li>透明化数据同步配置，通过库名和表名唯一定位，获取元数据信息并自动生成配置</li>
+<li>简化数据同步步骤，并进行封装，达到批量化、易操作的效果，减少重复操作和技能门槛<!-- OneClick -->
+
+</li>
+</ul>
+<h5 id="3-增量和全量同步的合并"><a href="#3-增量和全量同步的合并" class="headerlink" title="3.增量和全量同步的合并"></a>3.增量和全量同步的合并</h5><p>每次只同步变更的增量数据，然后与上次合并得到的全量数据进行合并从而获得最新的全量数据<br>传统的数据整合方案中，合并技术大多采用merge方式(update+insert)<br>当前流行的大数据平台基本都不支持update操作<br>使用全外连接(full outer join) + 数据全量覆盖重新加载(insert overwrite)<br>比如当天的增量数据和前一天的全量数据做全外连接，重新加载最新的全量数据。<br><em>大数据量规模下，全量更新的性能高于update</em></p>
+<h5 id="4-同步性能的优化"><a href="#4-同步性能的优化" class="headerlink" title="4.同步性能的优化"></a>4.同步性能的优化</h5><p>数据同步任务的线程总数达不到用户设置的首轮同步的线程数，或不同数据同步任务的重要程度不同<br>根据需要同步的总线程数将待同步的数据拆分成相等数量的数据块，一个线程处理一个数据块，并将该任务对应的所有线程提交至同步控制器。</p>
+<p><img src="/2020/07/26/aliBigData/ali.png" alt></p>
+<!-- TODO 图示 -->
+
+<h5 id="5-数据漂移问题的解决-p46"><a href="#5-数据漂移问题的解决-p46" class="headerlink" title="5.数据漂移问题的解决 p46"></a>5.数据漂移问题的解决 <em>p46</em></h5><p>数据漂移是ODS数据的一个顽疾，通常是指ODS表的同一个业务日期数据中包含前一天或后一天凌晨附近的数据或者丢失当天的变更数据。<br>ODS层需要按照时间段进行分区存储，通常做法是按照某些时间戳字段进行切分，而时间戳字段问题的准确性容易导致数据漂移。<br>时间戳字段分为:<br><em>modified_time</em>(数据库表更新记录时间戳)<br><em>log_time</em>(数据库日志更新时间戳)<br><em>proc_time</em>(具体业务发生时间戳)<br><em>extract_time</em>(数据被抽取的时间戳)<br>实际工程中这些时间戳是不一致的。<br><strong>解决方案</strong><br>根据log_time冗余每天前后15分钟数据，使用modify_time过滤非当天数据，确保不会因为系统问题遗漏<br>根据log_time获取后一天前15分钟的数据，并按照主键更具log_time升序排列去重<br>最后将前两步结果做全外连接，通过限制业务时间proc_time获取所需数据</p>
+<h5 id="6-去重指标"><a href="#6-去重指标" class="headerlink" title="6.去重指标"></a>6.去重指标</h5><p><strong>精确去重</strong>时一般数据需要保存下来，在处理过程中遇到内存问题时可以采用主动倾斜数据的方式对节点做负载均衡<br><strong>模糊去重</strong>则可以使用相关去重算法</p>
+<ul>
+<li>对于统计精度要求不高，统计维度较多时可以使用<strong>布隆过滤器</strong></li>
+<li>统计精度要求不高，统计维度非常粗的情况使用<strong>基数估计</strong></li>
+</ul>
+<h5 id="7-数据倾斜"><a href="#7-数据倾斜" class="headerlink" title="7.数据倾斜"></a>7.数据倾斜</h5><p>ETL过程中容易遇到数据倾斜问题，可以通过对数据进行分桶处理的方式来解决数据倾斜</p>
+<ul>
+<li>去重指标分桶，对去重字段hash分桶，相同的值肯定会进入到同一个桶中，每个桶再分别计算，利用的是每个桶的计算资源</li>
+<li>非去重指标分桶，数据随机分发到每个桶中，最后把每个桶的值会中，这里利用的是各个桶的计算资源</li>
+</ul>
+<h5 id="8-事务处理"><a href="#8-事务处理" class="headerlink" title="8.事务处理"></a>8.事务处理</h5><p>系统稳定性差、网络抖动、服务器重启等问题都可能导致分布式实时计算丢失数据<br>所以在流计算中提供数据自动ack、失败重发以及事务信息机制来保证数据的<strong>幂等性</strong></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tiankx</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://tiankx1003.github.io/2020/07/26/aliBigData/">http://tiankx1003.github.io/2020/07/26/aliBigData/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/BigData/">BigData</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="/img/aliPay.jpg"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="/img/WeChatPay.jpg"><div class="post-qr-code__desc">微信打赏</div></div></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/07/26/Hexo%E8%BF%81%E7%A7%BB/"><i class="fa fa-chevron-left">  </i><span>Hexo迁移报错解决</span></a></div><div class="next-post pull-right"><a href="/2020/07/26/VM%E4%B8%80%E9%94%AE%E5%90%AF%E5%81%9C/"><span>VM一键启停脚本</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '92790026f331d18e4b34',
+  clientSecret: '178a65c6e00605cff8e87083ee818aa41cfdf013',
+  repo: 'tiankx1003.github.io',
+  owner: 'tiankx1003',
+  admin: 'tiankx1003',
+  id: md5(decodeURI(location.pathname)),
+  language: 'en'
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(/img/bg.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2012 - 2020 By Tiankx</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://github.com/Tianxk1003" target="_blank" rel="noopener">blog</a>!</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script></body></html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Interview--开发经验"><meta name="keywords" content="BigData,Interview"><meta name="author" content="Tiankx"><meta name="copyright" content="Tiankx"><title>Interview--开发经验 | Tiankx</title><link rel="shortcut icon" href="/fire.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Tiankx" type="application/atom+xml">
+</head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、技术经验"><span class="toc-text">一、技术经验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Hadoop"><span class="toc-text">1.Hadoop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Flume"><span class="toc-text">2.Flume</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Kafka"><span class="toc-text">3.Kafka</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Hive"><span class="toc-text">4.Hive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-MySQL"><span class="toc-text">5.MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Tez"><span class="toc-text">6.Tez</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Sqoop"><span class="toc-text">7.Sqoop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Azkaban"><span class="toc-text">8.Azkaban</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Spark"><span class="toc-text">9.Spark</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、业务经验"><span class="toc-text">二、业务经验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ODS层压缩方式与存储格式"><span class="toc-text">1.ODS层压缩方式与存储格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DWD层做了哪些事"><span class="toc-text">2.DWD层做了哪些事</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-DWS层做了哪些事"><span class="toc-text">3.DWS层做了哪些事</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-分析过那些指标"><span class="toc-text">4.分析过那些指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-手写分析过得最难的指标"><span class="toc-text">5.手写分析过得最难的指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-每天运行多少张表，什么时间运行，运行多久"><span class="toc-text">6.每天运行多少张表，什么时间运行，运行多久</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-数仓中使用的文件存储格式"><span class="toc-text">7.数仓中使用的文件存储格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-数仓中用到的shell脚本与具体功能"><span class="toc-text">8.数仓中用到的shell脚本与具体功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-项目中用过的报表工具"><span class="toc-text">9.项目中用过的报表工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-测试相关"><span class="toc-text">10.测试相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-项目实际工作流程"><span class="toc-text">11.项目实际工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-项目中实现一个需求大概多长时间"><span class="toc-text">12.项目中实现一个需求大概多长时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-项目在三年的迭代次数，每个项目具体如何迭代"><span class="toc-text">13.项目在三年的迭代次数，每个项目具体如何迭代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-项目开发中每天做什么事"><span class="toc-text">14.项目开发中每天做什么事</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/header.jpg"></div><div class="author-info__name text-center">Tiankx</div><div class="author-info__description text-center">Tiankx的个人博客</div><div class="follow-button"><a href="https://github.com/Tiankx1003" target="_blank" rel="noopener">Follow Me</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">21</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">8</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Links</div><a class="author-info-links__name text-center" href="https://molunerfinn.com" target="_blank" rel="noopener">Molunerfinn</a><a class="author-info-links__name text-center" href="https://kinomin.github.io" target="_blank" rel="noopener">KinoMin</a><a class="author-info-links__name text-center" href="https://molunerfinn.com/hexo-theme-melody-doc" target="_blank" rel="noopener">HexoMelody</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/bg.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Tiankx</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span></div><div id="post-info"><div id="post-title">Interview--开发经验</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-07-26</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="一、技术经验"><a href="#一、技术经验" class="headerlink" title="一、技术经验"></a>一、技术经验</h1><h2 id="1-Hadoop"><a href="#1-Hadoop" class="headerlink" title="1.Hadoop"></a>1.Hadoop</h2><ol>
+<li>集群基    准测试(HDFS的读写性能、MapReduce的计算能力测试))</li>
+<li>一台服务器一百年有很多个硬盘插槽，如果不配置<code>datanode.data.dir</code>多目录，每次插入一块新的硬盘都需要重启服务器，配置了即插即用</li>
+<li>HDFS参数调优(项目中遇到的问题)<br>Namenode有一个工作线程池，用来处理与datanode的心跳(报告自身的健康状况和文件恢复请求)和元数据请求<code>dfs.namenode.handler.count=20*log2(cluster size)</code></li>
+<li>编辑日志存储路径<code>dfs.namenode.edits.dir</code>设置与镜像文件存储路径<code>dfs.namenode.name.dir</code>尽量分开，达到最低写入延迟(提高写入的吞吐量)</li>
+<li>Yarn参数调优yarn-site.xml，服务器节点上的Yarn可使用的物理内存总量，默认是8192MB，单个任务可申请的最多物理内存量，默认是8192MB</li>
+<li>HDFS和硬盘使用控制在70%以下</li>
+<li><strong>Hadoop宕机</strong>，如果MR造成宕机就调整Yarn同时运行的任务数，和每个任务申请的最大内存，<code>yarn.scheduler.maximum-allocation-mb</code>(任务可申请的最多物理内存量，默认是8192MB);如果写入文件过量造成NameNode宕机，那么调高Kafka的存储大小，控制从Kafk到HDFS的写入速度，高峰期的时候用Kafka进行缓存，高峰期过去数据同步会自动跟上。</li>
+</ol>
+<h2 id="2-Flume"><a href="#2-Flume" class="headerlink" title="2.Flume"></a>2.Flume</h2><ol>
+<li>Flume内存配置为4G(在flume-env.sh中修改)</li>
+<li>FileChannel优化，通过dataDir指向多个路径，每个路径对应不同的硬盘，增大Flume吞吐量，<code>checkpointDir</code>和<code>backCheckpointDir</code>也尽量配置在不同硬盘对应的目录中，保证checkpoint坏掉后，可以快速使用backupCheckpointDir恢复数据</li>
+<li>HDFS Sink小文件处理，<code>hdfs.rollInterval</code> <code>hdfs.rollSize</code> <code>hdfs.rollCount</code></li>
+<li>Ganglia监控Flume发现尝试提交的次数大于最终成功的次数，可以通过增大Flume内存或者增大Flume台数解决</li>
+</ol>
+<h2 id="3-Kafka"><a href="#3-Kafka" class="headerlink" title="3.Kafka"></a>3.Kafka</h2><ol>
+<li>Kafka吞吐量测试(测试生产速度和消费速度)</li>
+<li>Kafka内存为6G，不能超过6G</li>
+<li>Kafka数量的确定，2 * 峰值生产速度(m/s) * 副本数 / 100 + 1</li>
+<li>Kafka中数据量的计算<br> 每天数据总量100g(1亿条)  10000万/24/60/60 = 1150 条/s<br> 平均每秒: 1150 条<br> 低估每秒: 400 条<br> 高峰每秒: 1150 * 10 ≈ 11000 条<br> 每条日志大小: 1KB左右<br> 每条数据量: 20MB左右</li>
+<li>Kafka消息积压和消费能力不足的解决<br> 如果是Kafka消费能力的不足，则可以考虑增加Topic的分区数，并且同时提升消费组的消费者数量，消费者数=分区数(两者缺一不可)<br> 如果是下游的数据处理不及时，提高每批次的拉取数量，批次拉取数据过少(拉取数据/处理事件&lt;生产速度)导致处理的数据小于生产的数据，也会造成数据积压</li>
+<li>Kafka挂掉之后，Flume Channel可以缓存一段时间，短期没事；日志服务器有30天记录，可以重写跑</li>
+<li>Kafka数据重复，在下一级消费者中去重(redis SparkStreaming Hive的dwd层)</li>
+</ol>
+<h2 id="4-Hive"><a href="#4-Hive" class="headerlink" title="4.Hive"></a>4.Hive</h2><ol>
+<li>自定义UDF和UDTF解析和调试复杂字段<br> 自定义UDF(extends UDF实现evaluate方法)解析公共字段<br> 自定义UDTF(extends Genertic UDTF -&gt; 实现init指定返回值的名称和类型 process处理字段一进多出 close三个方法) -&gt; 更加灵活以及方便定位bug</li>
+<li>Hive优化</li>
+</ol>
+<h2 id="5-MySQL"><a href="#5-MySQL" class="headerlink" title="5.MySQL"></a>5.MySQL</h2><ol>
+<li>元数据备份(重点，如数据损坏，可能整个集群无法运行，至少要保证每日零点之后备份到其他服务器两个副本)，MysqlHA Keepalived mycat</li>
+<li>MySQL utf8超过字节数问题，Mysql的utf8编码最多存储3个字节，当数据中存在表情号、特色符号时会占用超过3个字节数的字节，那么会出现错误 <code>Incorrect string value: &#39;\xF0\x9F\x91\x91\xE5\xB0...&#39;</code> 解决办法：将utf8修改为utf8mb4 <code>set character_set_server = utf8mb4</code></li>
+</ol>
+<h2 id="6-Tez"><a href="#6-Tez" class="headerlink" title="6.Tez"></a>6.Tez</h2><p>Tez可以将多个有依赖的作业转换为一个作业，这样只需一次HDFS，且中间节点较少，从而大大提升作业的计算性能</p>
+<h2 id="7-Sqoop"><a href="#7-Sqoop" class="headerlink" title="7.Sqoop"></a>7.Sqoop</h2><ol>
+<li>Sqoop数据导出Parquet，ads层数据用Sqoop往MySQL中导入数据的时候，如果用了orc(Parquet)不能导入，需转化成text格式</li>
+<li>Sqoop数据导出控制，Sqoop中导入导出Null存储一致性问题，Hive中Null在底层以”\N”来存储，而MySQL中的null在底层就是Null，为了保证数据两端的一致性，在导出数据时采用<code>--input-null-string</code>和<code>--input-null-string</code>两个参数，导入导数据时采用<code>--null-string</code>和<code>--null-non-string</code></li>
+<li>Sqoop导出一致性问题，当Sqoop导出数据到MySQL时，4个map要保证一致性，因为在导出数据的过程中map任务可能会失败，可以使用<code>--staging-table</code> <code>--clear-staging</code>任务执行成功首先在tmp临时表中，然后tmp表中的数据复制到目标表中(这个时候可以使用事务，保证事务的一致性)</li>
+<li>Sqoop数据导出的时候一次执行时间取决于数据量，5分钟到2小时不等</li>
+</ol>
+<h2 id="8-Azkaban"><a href="#8-Azkaban" class="headerlink" title="8.Azkaban"></a>8.Azkaban</h2><ol>
+<li>每天集群运行多少job</li>
+<li>多个指标(200) * 6 = 1200 (100到1200个job)</li>
+<li>每天集群运行多少个task 1000 * (5 ~ 8) = 5000多个</li>
+<li>任务挂了怎么办，运行成功或者失败都会发邮件</li>
+<li><code>zip a.job b.job c.job job.zip</code> 把压缩的zip包放到azkaban的web界面上提交(指定scheduler)</li>
+</ol>
+<h2 id="9-Spark"><a href="#9-Spark" class="headerlink" title="9.Spark"></a>9.Spark</h2><ol>
+<li>优雅的关闭SparkStreaming任务</li>
+<li>SparkOOM、数据倾斜解决</li>
+</ol>
+<h1 id="二、业务经验"><a href="#二、业务经验" class="headerlink" title="二、业务经验"></a>二、业务经验</h1><h2 id="1-ODS层压缩方式与存储格式"><a href="#1-ODS层压缩方式与存储格式" class="headerlink" title="1.ODS层压缩方式与存储格式"></a>1.ODS层压缩方式与存储格式</h2><p>采用Snappy压缩，存储采用orc，压缩比是100g数据压缩成10g左右<br>创建分区表 <!-- TODO 创建分区表 --></p>
+<h2 id="2-DWD层做了哪些事"><a href="#2-DWD层做了哪些事" class="headerlink" title="2.DWD层做了哪些事"></a>2.DWD层做了哪些事</h2><blockquote>
+<p><strong>数据清洗</strong><br>去除空值<br>过滤核心字段无意义的数据，如订单表中订单id为null，支付表中支付id为空<br>对手机号、身份证号等敏感数据脱敏<br>对业务数据传过来的表进行维度退化和降维<br>将用户行为宽表和业务表进行数据一致性处理</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">when</span> a <span class="keyword">is</span> <span class="literal">null</span> <span class="keyword">then</span> b <span class="keyword">else</span> a <span class="keyword">end</span> <span class="keyword">as</span> JZR,</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">from</span> A</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>清洗的手段</strong><br>SQL，mr，rdd，kettle，Python</p>
+</blockquote>
+<blockquote>
+<p><strong>清洗掉多少数据合理</strong><br>一万条数据清洗掉一条</p>
+</blockquote>
+<h2 id="3-DWS层做了哪些事"><a href="#3-DWS层做了哪些事" class="headerlink" title="3.DWS层做了哪些事"></a>3.DWS层做了哪些事</h2><ol>
+<li><p>DWS层有3-5张宽表(处理100-200个指标，70%以上的需求)<br>具体宽表名称: 用户行为宽表，用户购买商品明细行为宽表，商品宽表，购物车宽表，物流宽表，登陆注册，售后等</p>
+</li>
+<li><p>那个宽表长度最宽，大概有多少个字段<br>用户行为宽表，大概有60-100个字段(一百以上)</p>
+</li>
+<li><p>具体用户行为宽表字段名称<br>评论、打赏、收藏、关注-用户、关注-商品、点赞、分享、好价爆料、文章发布、活跃、签到、补签卡、幸运屋、礼品、金币、电商点击、gmv</p>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`app_usr_interact`</span>(</span><br><span class="line">  <span class="string">`stat_dt`</span> <span class="built_in">date</span> <span class="keyword">COMMENT</span> <span class="string">'互动日期'</span>, </span><br><span class="line">  <span class="string">`user_id`</span> <span class="keyword">string</span> <span class="keyword">COMMENT</span> <span class="string">'用户id'</span>, </span><br><span class="line">  <span class="string">`nickname`</span> <span class="keyword">string</span> <span class="keyword">COMMENT</span> <span class="string">'用户昵称'</span>, </span><br><span class="line">  <span class="string">`register_date`</span> <span class="keyword">string</span> <span class="keyword">COMMENT</span> <span class="string">'注册日期'</span>, </span><br><span class="line">  <span class="string">`register_from`</span> <span class="keyword">string</span> <span class="keyword">COMMENT</span> <span class="string">'注册来源'</span>, </span><br><span class="line">  <span class="string">`remark`</span> <span class="keyword">string</span> <span class="keyword">COMMENT</span> <span class="string">'细分渠道'</span>, </span><br><span class="line">  <span class="string">`province`</span> <span class="keyword">string</span> <span class="keyword">COMMENT</span> <span class="string">'注册省份'</span>, </span><br><span class="line">  <span class="string">`pl_cnt`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'评论次数'</span>, </span><br><span class="line">  <span class="string">`ds_cnt`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'打赏次数'</span>, </span><br><span class="line">  <span class="string">`sc_add`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'添加收藏'</span>, </span><br><span class="line">  <span class="string">`sc_cancel`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'取消收藏'</span>, </span><br><span class="line">  <span class="string">`gzg_add`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'关注商品'</span>, </span><br><span class="line">  <span class="string">`gzg_cancel`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'取消关注商品'</span>, </span><br><span class="line">  <span class="string">`gzp_add`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'关注人'</span>, </span><br><span class="line">  <span class="string">`gzp_cancel`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'取消关注人'</span>, </span><br><span class="line">  <span class="string">`buzhi_cnt`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'点不值次数'</span>, </span><br><span class="line">  <span class="string">`zhi_cnt`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'点值次数'</span>, </span><br><span class="line">  <span class="string">`zan_cnt`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'点赞次数'</span>, </span><br><span class="line">  <span class="string">`share_cnts`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'分享次数'</span>, </span><br><span class="line">  <span class="string">`bl_cnt`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'爆料数'</span>, </span><br><span class="line">  <span class="string">`fb_cnt`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'好价发布数'</span>, </span><br><span class="line">  <span class="string">`online_cnt`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'活跃次数'</span>, </span><br><span class="line">  <span class="string">`checkin_cnt`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'签到次数'</span>, </span><br><span class="line">  <span class="string">`fix_checkin`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'补签次数'</span>, </span><br><span class="line">  <span class="string">`house_point`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'幸运屋金币抽奖次数'</span>, </span><br><span class="line">  <span class="string">`house_gold`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'幸运屋积分抽奖次数'</span>, </span><br><span class="line">  <span class="string">`pack_cnt`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'礼品兑换次数'</span>, </span><br><span class="line">  <span class="string">`gold_add`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'获取金币'</span>, </span><br><span class="line">  <span class="string">`gold_cancel`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'支出金币'</span>, </span><br><span class="line">  <span class="string">`surplus_gold`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'剩余金币'</span>, </span><br><span class="line">  <span class="string">`event`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'电商点击次数'</span>, </span><br><span class="line">  <span class="string">`gmv_amount`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'gmv'</span>, </span><br><span class="line">  <span class="string">`gmv_sales`</span> <span class="built_in">bigint</span> <span class="keyword">COMMENT</span> <span class="string">'订单数'</span>)</span><br><span class="line">PARTITIONED <span class="keyword">BY</span> (  <span class="string">`dt`</span> <span class="keyword">string</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>商品点击 -&gt; 购物车 -&gt; 订单 -&gt; 付款 转化率<br>5%  50%  80%</p>
+</li>
+<li><p>每天的GMV是多少，那个商品卖的好，每天下单量是多少<br>100万的日活每天大概有10万人购买，平均每天消费100元，一天的GMV在1000万<br>具体商品的销量要看季度，面膜和化妆品销量一般都会居高不下<br>每天下单量在10万左右</p>
+</li>
+</ol>
+<h2 id="4-分析过那些指标"><a href="#4-分析过那些指标" class="headerlink" title="4.分析过那些指标"></a>4.分析过那些指标</h2><blockquote>
+<p><strong>离线指标</strong><br>网站流量指标  独立访问UV  页面访客数PV<br>流量质量指标  跳出率  平均页面访问时长  人均页面访问数</p>
+</blockquote>
+<blockquote>
+<p><strong>购物车类指标</strong><br>加入购物车次数  加入购物车买家数  加入购物车商品数<br>购物车支付转化率</p>
+</blockquote>
+<blockquote>
+<p><strong>下单类指标</strong><br>下单笔数  下单金额  下单买家数  浏览下单转化率</p>
+</blockquote>
+<blockquote>
+<p><strong>支付类指标</strong><br>支付金额  支付买家数  支付商品数  浏览-支付买家转化率<br>下单-支付金额转化率  下单-支付买家转化率</p>
+</blockquote>
+<blockquote>
+<p><strong>交易类指标</strong><br>交易成功订单数  交易成功金额  交易成功买家数  交易成功商品数<br>交易失败订单数  交易失败订单金额  交易失败买家数<br>交易失败商品数  退款总订单量  退款金额  退款率</p>
+</blockquote>
+<blockquote>
+<p><strong>市场营销活动指标</strong><br>新增访客人数  新增注册人数  广澳投资回报率  UV  订单转化率</p>
+</blockquote>
+<blockquote>
+<p><strong>风控类指标</strong><br>买家评价数  买家商品图片数  买家评价率  买家好评率 买家差评率<br>物流平均配送时间</p>
+</blockquote>
+<blockquote>
+<p><strong>投诉类指标</strong><br>发起投诉数  投诉率  撤销投诉(申诉数)</p>
+</blockquote>
+<blockquote>
+<p><strong>商品类指标</strong><br>产品总数  SKU数  SPU数<br>上架商品SKU数  上架商品SPU数 上架商品数</p>
+</blockquote>
+<p><img src="/2020/07/26/Interview--%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/data-analysis.png.png" alt="data-analysis.png"></p>
+<p>日活跃用户，<br>月活跃用户，<br>各区域Top10商品统计，<br>季度商品品类点击率top10，<br>用户留存，<br>月APP的用户增长人数，<br>广告区域点击数top3，<br>活跃用户每天在线时长，<br>投诉人数占比，<br>沉默用户占比，<br>用户的新鲜度，<br>商品上架的sku数，<br>同种品类的交易额排名，<br>统计买家的评价率，<br>用户浏览时长，<br>统计下单的数量，<br>统计支付的数量，<br>统计退货的数量，<br>用户的（日活、月活、周活），<br>统计流失人数</p>
+<p>日活，周活，月活，沉默用户占比，增长人数，活跃用户占比，在线时长统计，歌曲访问数，歌曲访问时长，各地区Top10歌曲统计 ,投诉人数占比，投诉回应时长，留存率，月留存率，转化率，GMV，复购vip率，vip人数，歌榜，挽回率，粉丝榜，打赏次数，打赏金额，发布歌曲榜单，歌曲热度榜单，歌手榜单，用户年龄组，vip年龄组占比，收藏数榜单，评论数<br>用户活跃数统计（日活，月活，周活），某段时间的新增用户/活跃用户数，页面单跳转化率统计，活跃人数占比（占总用户比例），在线时长统计（活跃用户每天在线时长），统计本月的人均在线时长，订单产生效率（下单的次数与访问次数比），页面访问时长（单个页面访问时长），统计本季度付款订单，统计某广告的区城点击数top3，统计本月用户的流失人数，统计本月流失人数占用户人数的比例，统计本月APP的用户增长人数，统计本月的沉默用户，统计某时段的登录人数，统计本日用户登录的次数平均值，统计用户在某类型商品中的浏览深度（页面转跳率），统计用户从下单开始到交易成功的平均时长，Top10热门商品的统计，统计下单的数量，统计支付的数量，统计退货的数量，统计动销率（有销量的商品/在线销售的宝贝），统计支付转化率，统计用户的消费频率，统计商品上架的SKU数，统计同种品类的交易额排名，统计按下单退款排序的top10的商品，统计本APP的投诉人数占用户人数的比例，用户收藏商品</p>
+<h2 id="5-手写分析过得最难的指标"><a href="#5-手写分析过得最难的指标" class="headerlink" title="5.手写分析过得最难的指标"></a>5.手写分析过得最难的指标</h2><ol>
+<li>最近连续三周活跃用户数</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">exists</span> ads_continuity_wk_count;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">external</span> <span class="keyword">table</span> ads_continuity_wk_count( </span><br><span class="line">    <span class="string">`dt`</span> <span class="keyword">string</span> <span class="keyword">COMMENT</span> <span class="string">'统计日期,一般用结束周周日日期,如果每天计算一次,可用当天日期'</span>,</span><br><span class="line">    <span class="string">`wk_dt`</span> <span class="keyword">string</span> <span class="keyword">COMMENT</span> <span class="string">'持续时间'</span>,</span><br><span class="line">    <span class="string">`continuity_count`</span> <span class="built_in">bigint</span></span><br><span class="line">) </span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> <span class="keyword">delimited</span> <span class="keyword">fields</span> <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">'\t'</span></span><br><span class="line">location <span class="string">'/warehouse/gmall/ads/ads_continuity_wk_count'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> ads_continuity_wk_count</span><br><span class="line"><span class="keyword">select</span> </span><br><span class="line">     <span class="string">'2019-02-20'</span>,</span><br><span class="line">     <span class="keyword">concat</span>(<span class="keyword">date_add</span>(next_day(<span class="string">'2019-02-20'</span>,<span class="string">'MO'</span>),<span class="number">-7</span>*<span class="number">3</span>),<span class="string">'_'</span>,<span class="keyword">date_add</span>(next_day(<span class="string">'2019-02-20'</span>,<span class="string">'MO'</span>),<span class="number">-1</span>)),</span><br><span class="line">     <span class="keyword">count</span>(*)</span><br><span class="line"><span class="keyword">from</span> </span><br><span class="line">(</span><br><span class="line">    <span class="keyword">select</span> mid_id</span><br><span class="line">    <span class="keyword">from</span> dws_uv_detail_wk</span><br><span class="line">    <span class="keyword">where</span> wk_dt&gt;=<span class="keyword">concat</span>(<span class="keyword">date_add</span>(next_day(<span class="string">'2019-02-20'</span>,<span class="string">'MO'</span>),<span class="number">-7</span>*<span class="number">3</span>),<span class="string">'_'</span>,<span class="keyword">date_add</span>(next_day(<span class="string">'2019-02-20'</span>,<span class="string">'MO'</span>),<span class="number">-7</span>*<span class="number">2</span><span class="number">-1</span>)) </span><br><span class="line">    <span class="keyword">and</span> wk_dt&lt;=<span class="keyword">concat</span>(<span class="keyword">date_add</span>(next_day(<span class="string">'2019-02-20'</span>,<span class="string">'MO'</span>),<span class="number">-7</span>),<span class="string">'_'</span>,<span class="keyword">date_add</span>(next_day(<span class="string">'2019-02-20'</span>,<span class="string">'MO'</span>),<span class="number">-1</span>))</span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> mid_id</span><br><span class="line">    <span class="keyword">having</span> <span class="keyword">count</span>(*)=<span class="number">3</span></span><br><span class="line">)t1;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>最近七天内连续三天活跃用户数</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">exists</span> ads_continuity_uv_count;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">external</span> <span class="keyword">table</span> ads_continuity_uv_count( </span><br><span class="line">    <span class="string">`dt`</span> <span class="keyword">string</span> <span class="keyword">COMMENT</span> <span class="string">'统计日期'</span>,</span><br><span class="line">    <span class="string">`wk_dt`</span> <span class="keyword">string</span> <span class="keyword">COMMENT</span> <span class="string">'最近7天日期'</span>,</span><br><span class="line">    <span class="string">`continuity_count`</span> <span class="built_in">bigint</span></span><br><span class="line">) <span class="keyword">COMMENT</span> <span class="string">'连续活跃设备数'</span></span><br><span class="line"><span class="keyword">row</span> <span class="keyword">format</span> <span class="keyword">delimited</span> <span class="keyword">fields</span> <span class="keyword">terminated</span> <span class="keyword">by</span> <span class="string">'\t'</span></span><br><span class="line">location <span class="string">'/warehouse/gmall/ads/ads_continuity_uv_count'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> ads_continuity_uv_count</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="string">'2019-02-12'</span>,</span><br><span class="line">    <span class="keyword">concat</span>(<span class="keyword">date_add</span>(<span class="string">'2019-02-12'</span>,<span class="number">-6</span>),<span class="string">'_'</span>,<span class="string">'2019-02-12'</span>),</span><br><span class="line">    <span class="keyword">count</span>(*)</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">select</span> mid_id</span><br><span class="line">    <span class="keyword">from</span></span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">select</span> mid_id      </span><br><span class="line">        <span class="keyword">from</span></span><br><span class="line">        (</span><br><span class="line">            <span class="keyword">select</span> </span><br><span class="line">                mid_id,</span><br><span class="line">                <span class="keyword">date_sub</span>(dt,<span class="keyword">rank</span>) date_dif</span><br><span class="line">            <span class="keyword">from</span></span><br><span class="line">            (</span><br><span class="line">                <span class="keyword">select</span> </span><br><span class="line">                    mid_id,</span><br><span class="line">                    dt,</span><br><span class="line">                    <span class="keyword">rank</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> mid_id <span class="keyword">order</span> <span class="keyword">by</span> dt) <span class="keyword">rank</span></span><br><span class="line">                <span class="keyword">from</span> dws_uv_detail_day</span><br><span class="line">                <span class="keyword">where</span> dt&gt;=<span class="keyword">date_add</span>(<span class="string">'2019-02-12'</span>,<span class="number">-6</span>) <span class="keyword">and</span> dt&lt;=<span class="string">'2019-02-12'</span></span><br><span class="line">            )t1</span><br><span class="line">        )t2 </span><br><span class="line">        <span class="keyword">group</span> <span class="keyword">by</span> mid_id,date_dif</span><br><span class="line">        <span class="keyword">having</span> <span class="keyword">count</span>(*)&gt;=<span class="number">3</span></span><br><span class="line">    )t3 </span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> mid_id</span><br><span class="line">)t4;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="6-每天运行多少张表，什么时间运行，运行多久"><a href="#6-每天运行多少张表，什么时间运行，运行多久" class="headerlink" title="6.每天运行多少张表，什么时间运行，运行多久"></a>6.每天运行多少张表，什么时间运行，运行多久</h2><p>基本一个项目建一个库，表个数为初始的原始数据表加上统计结果表格的总数(70-100张表)<br>每天00:30开始运行<br>所有离线数据报表控制在8小时之内<br>大数据实时处理部分控制在5分钟之内<br>评分标准满分5分</p>
+<h2 id="7-数仓中使用的文件存储格式"><a href="#7-数仓中使用的文件存储格式" class="headerlink" title="7.数仓中使用的文件存储格式"></a>7.数仓中使用的文件存储格式</h2><p>常用的包括 textFile rcFile ORC Parquet 一般企业使用ORC或者Parquet，因为这两者是列式存储，且压缩比较高，所以相比于textFile，查询速度快，占用磁盘空间少</p>
+<h2 id="8-数仓中用到的shell脚本与具体功能"><a href="#8-数仓中用到的shell脚本与具体功能" class="headerlink" title="8.数仓中用到的shell脚本与具体功能"></a>8.数仓中用到的shell脚本与具体功能</h2><p>集群启停(Hadoop Flume Kafka Zookeeper)<br>Sqoop与数仓之间的导入导出<br>数仓层级之间的导入导出</p>
+<h2 id="9-项目中用过的报表工具"><a href="#9-项目中用过的报表工具" class="headerlink" title="9.项目中用过的报表工具"></a>9.项目中用过的报表工具</h2><p>Echarts kabana Tableau Superset</p>
+<h2 id="10-测试相关"><a href="#10-测试相关" class="headerlink" title="10.测试相关"></a>10.测试相关</h2><ol>
+<li><p>公司有多少台测试服务器<br>一般有三台</p>
+</li>
+<li><p>测试数据哪来的<br>一部分自己写java程序自己造，一部分从生产环境中取</p>
+</li>
+<li><p>如何确保sql的正确性<br>造一些特定的模拟数据进行测试<br>离线和实时分析结果比较</p>
+</li>
+<li><p>测试环境怎么样<br>测试环境的配置是生产的一半</p>
+</li>
+<li><p>测试之后如何上限<br>将脚本打包提交git到git，发邮件抄送经理和总监，运维，通过之后跟运维一起配合上线</p>
+</li>
+</ol>
+<h2 id="11-项目实际工作流程"><a href="#11-项目实际工作流程" class="headerlink" title="11.项目实际工作流程"></a>11.项目实际工作流程</h2><ol>
+<li>先与产品讨论，看报表的各个数据从哪些埋点中取</li>
+<li>将取得逻辑过程设计好，与产品确定后开始开发</li>
+<li>开发出报表sql脚本，并且跑几天的历史数据，观察结果</li>
+<li>将报表放入调度任务中，第二天给产品看结果</li>
+<li>周期性将表结果导出或是导入后台数据库，生成可视化报表</li>
+</ol>
+<h2 id="12-项目中实现一个需求大概多长时间"><a href="#12-项目中实现一个需求大概多长时间" class="headerlink" title="12.项目中实现一个需求大概多长时间"></a>12.项目中实现一个需求大概多长时间</h2><p>刚入职第一个需求大概7天左右，业务熟悉后平均每天一个需求<br>具体进度也会收到别的因素影响，如开会讨论需求、权限申请和测试</p>
+<h2 id="13-项目在三年的迭代次数，每个项目具体如何迭代"><a href="#13-项目在三年的迭代次数，每个项目具体如何迭代" class="headerlink" title="13.项目在三年的迭代次数，每个项目具体如何迭代"></a>13.项目在三年的迭代次数，每个项目具体如何迭代</h2><p>大约一个月迭代一次，产品或者我们提出优化需求，然后评估时间，每周我们都会开会做本周总结和下周计划，偶尔会讨论预研的新技术。</p>
+<h2 id="14-项目开发中每天做什么事"><a href="#14-项目开发中每天做什么事" class="headerlink" title="14.项目开发中每天做什么事"></a>14.项目开发中每天做什么事</h2><p>新需求(如埋点)，报表来了之后需要设计方案，设计完成后与产品讨论再开发<br>业务中出现问题，需要查错，如日活月活下降</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tiankx</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://tiankx1003.github.io/2020/07/26/Interview--%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/">http://tiankx1003.github.io/2020/07/26/Interview--%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/BigData/">BigData</a><a class="post-meta__tags" href="/tags/Interview/">Interview</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="/img/aliPay.jpg"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="/img/WeChatPay.jpg"><div class="post-qr-code__desc">微信打赏</div></div></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/07/26/Interview--%E9%A1%B9%E7%9B%AE%E6%8A%80%E6%9C%AF/"><i class="fa fa-chevron-left">  </i><span>Interview--项目技术</span></a></div><div class="next-post pull-right"><a href="/2020/07/26/Interview--SQL/"><span>Interview--SQL</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '92790026f331d18e4b34',
+  clientSecret: '178a65c6e00605cff8e87083ee818aa41cfdf013',
+  repo: 'tiankx1003.github.io',
+  owner: 'tiankx1003',
+  admin: 'tiankx1003',
+  id: md5(decodeURI(location.pathname)),
+  language: 'en'
+})
+gitalk.render('gitalk-container')</script></div></div><footer class="footer-bg" style="background-image: url(/img/bg.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2012 - 2020 By Tiankx</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://github.com/Tianxk1003" target="_blank" rel="noopener">blog</a>!</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script></body></html>
