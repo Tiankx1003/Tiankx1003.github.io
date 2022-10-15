@@ -105,31 +105,6 @@
   </entry>
   
   <entry>
-    <title>wsl的搭建与配置</title>
-    <link href="http://tiankx1003.github.io/2020/07/26/wsl%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
-    <id>http://tiankx1003.github.io/2020/07/26/wsl%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/</id>
-    <published>2020-07-26T14:11:10.436Z</published>
-    <updated>2020-07-26T14:11:10.436Z</updated>
-    
-    <content type="html"><![CDATA[<p>Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。</p><p><img src="/2020/07/26/wsl%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/wsl.png" alt></p><h3 id="启用wsl"><a href="#启用wsl" class="headerlink" title="启用wsl"></a>启用wsl</h3><p>控制面板 -&gt; 程序 -&gt; 启用或关闭windows功能 -&gt; 勾选试用linux的windows系统<br>或者在powershell中输入如下命令</p><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Enable-WindowsOptionalFeature</span> <span class="literal">-Online</span> <span class="literal">-FeatureName</span> Microsoft<span class="literal">-Windows</span><span class="literal">-Subsystem</span><span class="literal">-Linux</span></span><br><span class="line"><span class="comment"># vmware用户不要打开此项</span></span><br><span class="line"><span class="built_in">Disable-WindowsOptionalFeature</span> <span class="literal">-Online</span> <span class="literal">-FeatureName</span> VirtualMachinePlatform</span><br></pre></td></tr></table></figure><p>重启生效</p><h3 id="安装wsl版Ubuntu"><a href="#安装wsl版Ubuntu" class="headerlink" title="安装wsl版Ubuntu"></a>安装wsl版Ubuntu</h3><p>应用商店 -&gt; 搜索并下载Ubuntu<br>安装后第一次打开等待系统初始化<br>设置用户名密码后开始使用</p><h3 id="更新到wsl2"><a href="#更新到wsl2" class="headerlink" title="更新到wsl2"></a>更新到wsl2</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl -<span class="literal">-set</span><span class="literal">-version</span> &lt;Distro&gt; <span class="number">2</span></span><br><span class="line">wsl -<span class="literal">-set</span><span class="literal">-default</span><span class="literal">-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure><h3 id="后续配置"><a href="#后续配置" class="headerlink" title="后续配置"></a>后续配置</h3><h5 id="更改apt为国内镜像源-以阿里云为例"><a href="#更改apt为国内镜像源-以阿里云为例" class="headerlink" title="更改apt为国内镜像源(以阿里云为例)"></a>更改apt为国内镜像源(以阿里云为例)</h5><p>默认镜像源使用apt命令下载安装软件时网速会比较慢，我们改成国内的镜像源会快很多。</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure><h5 id="使用注册表更改windows中shell的codepage和字体"><a href="#使用注册表更改windows中shell的codepage和字体" class="headerlink" title="使用注册表更改windows中shell的codepage和字体"></a>使用注册表更改windows中shell的codepage和字体</h5><p>windows终端的字体在默认codepage为gbk时可用的字体较少，改为utf-8或OEM美国可选字体更多，如Consolas</p><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">chcp <span class="number">437</span> <span class="comment"># codepage改为utf-8</span></span><br><span class="line">chcp <span class="number">936</span> <span class="comment"># codepage改为gbk</span></span><br></pre></td></tr></table></figure><p>打开注册表定位到<code>\HKEY_CURRENT_USER\Console</code><br>修改对应项中的CodePage(437或936对应的16进制数)<br>修改FaceName中的字体</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/07/26/wsl%E7%9A%84%E6%90%AD%E5%BB
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Linux" scheme="http://tiankx1003.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Vundle &amp; zsh</title>
     <link href="http://tiankx1003.github.io/2020/07/26/zshVundle/"/>
     <id>http://tiankx1003.github.io/2020/07/26/zshVundle/</id>
@@ -177,27 +152,27 @@
   </entry>
   
   <entry>
-    <title>VM一键启停脚本</title>
-    <link href="http://tiankx1003.github.io/2020/07/26/VM%E4%B8%80%E9%94%AE%E5%90%AF%E5%81%9C/"/>
-    <id>http://tiankx1003.github.io/2020/07/26/VM%E4%B8%80%E9%94%AE%E5%90%AF%E5%81%9C/</id>
-    <published>2020-07-26T14:11:10.434Z</published>
-    <updated>2020-07-26T14:11:10.434Z</updated>
+    <title>wsl的搭建与配置</title>
+    <link href="http://tiankx1003.github.io/2020/07/26/wsl%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>http://tiankx1003.github.io/2020/07/26/wsl%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/</id>
+    <published>2020-07-26T14:11:10.436Z</published>
+    <updated>2020-07-26T14:11:10.436Z</updated>
     
-    <content type="html"><![CDATA[<p>添加vmware workstation的安装目录到环境变量</p><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 测试配置</span></span><br><span class="line">vmrun</span><br><span class="line"><span class="comment"># 回显如下内容表示配置正确</span></span><br><span class="line">vmrun version <span class="number">1.17</span>.<span class="number">0</span> build<span class="literal">-14665864</span></span><br><span class="line">Usage: vmrun [<span class="type">AUTHENTICATION</span>-<span class="type">FLAGS</span>] COMMAND [<span class="type">PARAMETERS</span>]</span><br></pre></td></tr></table></figure><h5 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h5><ul><li>文件路径改为指定虚拟机*.vmx文件绝对路径即可</li></ul><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">@echo off &amp; setlocal enabledelayedexpansion</span><br><span class="line">echo <span class="string">"Start Hadoop Cluster..."</span></span><br><span class="line">vmrun <span class="literal">-T</span> ws start <span class="string">"C:\vmware\hadoop101\hadoop102.vmx"</span> nogui</span><br><span class="line">vmrun <span class="literal">-T</span> ws start <span class="string">"C:\vmware\hadoop102\hadoop103.vmx"</span> nogui</span><br><span class="line">vmrun <span class="literal">-T</span> ws start <span class="string">"C:\vmware\hadoop103\hadoop104.vmx"</span> nogui</span><br></pre></td></tr></table></figure><h5 id="关机脚本"><a href="#关机脚本" class="headerlink" title="关机脚本"></a>关机脚本</h5><ul><li>更改vmlist.txt内容可以关闭指定虚拟机</li></ul><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">@echo off &amp; setlocal enabledelayedexpansion</span><br><span class="line">echo <span class="string">"Shutdown Hadoop Cluster..."</span></span><br><span class="line"><span class="comment"># 把当前运行的虚拟机列表写入到文本中</span></span><br><span class="line">vmrun list &gt; vmlist.txt</span><br><span class="line"><span class="keyword">for</span> %%i <span class="keyword">in</span> (vmlist.txt) <span class="keyword">do</span> (</span><br><span class="line">    set <span class="string">"f=%%i"</span></span><br><span class="line">    <span class="keyword">for</span> /f <span class="string">"usebackq delims="</span> %%j <span class="keyword">in</span> (<span class="string">"!f!"</span>) <span class="keyword">do</span> set/a n+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> /f <span class="string">"delims="</span> %%m <span class="keyword">in</span> (<span class="string">'"type "!f!"|more /E +1 &amp; cd. 2^&gt;!f!"'</span>) <span class="keyword">do</span>(</span><br><span class="line">        set/a x+=<span class="number">1</span>&amp;<span class="keyword">if</span> !x! leq !n! echo;%%m&gt;&gt;!f!</span><br><span class="line">    ) </span><br><span class="line">    set/a n=<span class="number">0</span>,x=<span class="number">0</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">for</span> /f <span class="string">"delims="</span> %%a <span class="keyword">in</span> (vmlist.txt) <span class="keyword">do</span> (</span><br><span class="line">     vmrun <span class="literal">-T</span> ws stop <span class="string">"%%a"</span> nogui</span><br><span class="line">)</span><br><span class="line">del /F /Q vmlist.txt</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。</p><p><img src="/2020/07/26/wsl%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/wsl.png" alt></p><h3 id="启用wsl"><a href="#启用wsl" class="headerlink" title="启用wsl"></a>启用wsl</h3><p>控制面板 -&gt; 程序 -&gt; 启用或关闭windows功能 -&gt; 勾选试用linux的windows系统<br>或者在powershell中输入如下命令</p><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Enable-WindowsOptionalFeature</span> <span class="literal">-Online</span> <span class="literal">-FeatureName</span> Microsoft<span class="literal">-Windows</span><span class="literal">-Subsystem</span><span class="literal">-Linux</span></span><br><span class="line"><span class="comment"># vmware用户不要打开此项</span></span><br><span class="line"><span class="built_in">Disable-WindowsOptionalFeature</span> <span class="literal">-Online</span> <span class="literal">-FeatureName</span> VirtualMachinePlatform</span><br></pre></td></tr></table></figure><p>重启生效</p><h3 id="安装wsl版Ubuntu"><a href="#安装wsl版Ubuntu" class="headerlink" title="安装wsl版Ubuntu"></a>安装wsl版Ubuntu</h3><p>应用商店 -&gt; 搜索并下载Ubuntu<br>安装后第一次打开等待系统初始化<br>设置用户名密码后开始使用</p><h3 id="更新到wsl2"><a href="#更新到wsl2" class="headerlink" title="更新到wsl2"></a>更新到wsl2</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl -<span class="literal">-set</span><span class="literal">-version</span> &lt;Distro&gt; <span class="number">2</span></span><br><span class="line">wsl -<span class="literal">-set</span><span class="literal">-default</span><span class="literal">-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure><h3 id="后续配置"><a href="#后续配置" class="headerlink" title="后续配置"></a>后续配置</h3><h5 id="更改apt为国内镜像源-以阿里云为例"><a href="#更改apt为国内镜像源-以阿里云为例" class="headerlink" title="更改apt为国内镜像源(以阿里云为例)"></a>更改apt为国内镜像源(以阿里云为例)</h5><p>默认镜像源使用apt命令下载安装软件时网速会比较慢，我们改成国内的镜像源会快很多。</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure><h5 id="使用注册表更改windows中shell的codepage和字体"><a href="#使用注册表更改windows中shell的codepage和字体" class="headerlink" title="使用注册表更改windows中shell的codepage和字体"></a>使用注册表更改windows中shell的codepage和字体</h5><p>windows终端的字体在默认codepage为gbk时可用的字体较少，改为utf-8或OEM美国可选字体更多，如Consolas</p><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">chcp <span class="number">437</span> <span class="comment"># codepage改为utf-8</span></span><br><span class="line">chcp <span class="number">936</span> <span class="comment"># codepage改为gbk</span></span><br></pre></td></tr></table></figure><p>打开注册表定位到<code>\HKEY_CURRENT_USER\Console</code><br>修改对应项中的CodePage(437或936对应的16进制数)<br>修改FaceName中的字体</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;添加vmware workstation的安装目录到环境变量&lt;/p&gt;
-&lt;figure class=&quot;highlight powershell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;
+        &lt;p&gt;Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/07/26/wsl%E7%9A%84%E6%90%AD%E5%BB
       
     
     </summary>
     
     
     
-      <category term="Batch Script" scheme="http://tiankx1003.github.io/tags/Batch-Script/"/>
+      <category term="Linux" scheme="http://tiankx1003.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -222,6 +197,31 @@
     
     
       <category term="BigData" scheme="http://tiankx1003.github.io/tags/BigData/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VM一键启停脚本</title>
+    <link href="http://tiankx1003.github.io/2020/07/26/VM%E4%B8%80%E9%94%AE%E5%90%AF%E5%81%9C/"/>
+    <id>http://tiankx1003.github.io/2020/07/26/VM%E4%B8%80%E9%94%AE%E5%90%AF%E5%81%9C/</id>
+    <published>2020-07-26T14:11:10.434Z</published>
+    <updated>2020-07-26T14:11:10.434Z</updated>
+    
+    <content type="html"><![CDATA[<p>添加vmware workstation的安装目录到环境变量</p><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 测试配置</span></span><br><span class="line">vmrun</span><br><span class="line"><span class="comment"># 回显如下内容表示配置正确</span></span><br><span class="line">vmrun version <span class="number">1.17</span>.<span class="number">0</span> build<span class="literal">-14665864</span></span><br><span class="line">Usage: vmrun [<span class="type">AUTHENTICATION</span>-<span class="type">FLAGS</span>] COMMAND [<span class="type">PARAMETERS</span>]</span><br></pre></td></tr></table></figure><h5 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h5><ul><li>文件路径改为指定虚拟机*.vmx文件绝对路径即可</li></ul><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">@echo off &amp; setlocal enabledelayedexpansion</span><br><span class="line">echo <span class="string">"Start Hadoop Cluster..."</span></span><br><span class="line">vmrun <span class="literal">-T</span> ws start <span class="string">"C:\vmware\hadoop101\hadoop102.vmx"</span> nogui</span><br><span class="line">vmrun <span class="literal">-T</span> ws start <span class="string">"C:\vmware\hadoop102\hadoop103.vmx"</span> nogui</span><br><span class="line">vmrun <span class="literal">-T</span> ws start <span class="string">"C:\vmware\hadoop103\hadoop104.vmx"</span> nogui</span><br></pre></td></tr></table></figure><h5 id="关机脚本"><a href="#关机脚本" class="headerlink" title="关机脚本"></a>关机脚本</h5><ul><li>更改vmlist.txt内容可以关闭指定虚拟机</li></ul><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">@echo off &amp; setlocal enabledelayedexpansion</span><br><span class="line">echo <span class="string">"Shutdown Hadoop Cluster..."</span></span><br><span class="line"><span class="comment"># 把当前运行的虚拟机列表写入到文本中</span></span><br><span class="line">vmrun list &gt; vmlist.txt</span><br><span class="line"><span class="keyword">for</span> %%i <span class="keyword">in</span> (vmlist.txt) <span class="keyword">do</span> (</span><br><span class="line">    set <span class="string">"f=%%i"</span></span><br><span class="line">    <span class="keyword">for</span> /f <span class="string">"usebackq delims="</span> %%j <span class="keyword">in</span> (<span class="string">"!f!"</span>) <span class="keyword">do</span> set/a n+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> /f <span class="string">"delims="</span> %%m <span class="keyword">in</span> (<span class="string">'"type "!f!"|more /E +1 &amp; cd. 2^&gt;!f!"'</span>) <span class="keyword">do</span>(</span><br><span class="line">        set/a x+=<span class="number">1</span>&amp;<span class="keyword">if</span> !x! leq !n! echo;%%m&gt;&gt;!f!</span><br><span class="line">    ) </span><br><span class="line">    set/a n=<span class="number">0</span>,x=<span class="number">0</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">for</span> /f <span class="string">"delims="</span> %%a <span class="keyword">in</span> (vmlist.txt) <span class="keyword">do</span> (</span><br><span class="line">     vmrun <span class="literal">-T</span> ws stop <span class="string">"%%a"</span> nogui</span><br><span class="line">)</span><br><span class="line">del /F /Q vmlist.txt</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;添加vmware workstation的安装目录到环境变量&lt;/p&gt;
+&lt;figure class=&quot;highlight powershell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Batch Script" scheme="http://tiankx1003.github.io/tags/Batch-Script/"/>
     
   </entry>
   
